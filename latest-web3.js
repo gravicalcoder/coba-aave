@@ -66,11 +66,11 @@ const aggregatorV3InterfaceABI = [
 
 //const addr = "0xAb5c49580294Aff77670F839ea425f5b78ab3Ae7"  // usdc / usd
 
-//const addr = "0xf9680d99d6c9589e2a93a78a04a279e509205945"  // eth /usd  polygon
+const addr = "0xf9680d99d6c9589e2a93a78a04a279e509205945"  // eth /usd  polygon
 
 //const addr ="0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6"  // btc/usd polygon
 
-const addr ="0xefb7e6be8356cCc6827799B6A7348eE674A80EaE"  // ETH/usd
+//const addr ="0xefb7e6be8356cCc6827799B6A7348eE674A80EaE"  // ETH/usd
 
 
 const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, addr)
