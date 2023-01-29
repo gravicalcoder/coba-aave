@@ -17,7 +17,9 @@ const seedMnemonic = hdkeyObject.mnemonic;
 console.log(seedMnemonic);
 */
 
+/*
 const privateKey = "0x348ce564d427a3311b6536bbcff9390d69395b06ed6c486954e971d960fe8709";
 const seed = bip39.entropyToMnemonic(privateKey);
 console.log(seed);
+*/
 
