@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store and Retrieve User Information</title>
+  </head>
+  <body>
+    <h1>Store and Retrieve User Information</h1>
+    <label>Name:</label>
+    <input id="name" type="text"><br>
+    <label>Age:</label>
+    <input id="age" type="number"><br>
+    <label>Sex:</label>
+    <input id="sex" type="text"><br>
+    <label>Phone Number:</label>
+    <input id="phoneNumber" type="number"><br>
+    <label>City:</label>
+    <input id="city" type="text"><br>
+    <button onclick="setUser()">Store User Information</button>
+    <button onclick="getUser()">Retrieve User Information</button>
+    <div id="userInfo"></div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+      const contractAbi = [ /* ABI of your smart contract */ ];
+      const contractAddress = '/* address of your smart contract on the blockchain */';
+      const web3 = new Web3(new Web3.providers.HttpProvider('/* URL of your Ethereum node */'));
+      const contract = new web3.eth.Contract(contractAbi, contractAddress);
+
+      async function setUser() {
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const sex = document.getElementById('sex').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const city = document.getElementById('city').value;
+        await contract.methods.setUser(name, age, sex, phoneNumber, city).send({ from: /* sender's Ethereum address */ });
+        console.log('User information stored successfully');
+      }
+
+      async function getUser() {
+        const [name, age, sex, phoneNumber, city] = await contract.methods.getUser().call({ from: /* sender's Ethereum address */ });
+        const userInfoElement = document.getElementById('userInfo');
+        userInfoElement.innerHTML = 
+          <p>Name: ${name}</p>
+          <p>Age: ${age}</p>
+          <p>Sex: ${sex}</p>
+          <p>Phone Number: ${phoneNumber}</p>
+          <p>City: ${city}</p>
+        ;
+      }
+    </script>
+  </body>
+</html>
