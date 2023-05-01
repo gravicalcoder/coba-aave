@@ -2,9 +2,12 @@ const ethers = require('ethers');
 const uniswap = require('@uniswap/sdk');
 
 const provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com/');
-//const signer = new ethers.Signer(provider, '0x94bf4693d19e8fc7e80fbd66731591bb6fc70f55c5827d18a9097d6a6749d7e2');
-//const signer = new ethers.Signer(provider, '0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560');
-const signer = new ethers.Wallet('0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560', provider);
+
+require('dotenv').config()
+const privateKey = process.env.WALLET_SECRET;
+
+const signer = new ethers.Wallet( privateKey , provider);
+
 
 async function swapMaticForUsdc() {
   // Get the latest exchange rate for Matic to USDC
@@ -24,7 +27,7 @@ async function swapMaticForUsdc() {
     uniswap.token.getAddress('USDC'),
     usdcAmount,
     signer,
-    '0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560'
+    privateKey
   );
 
   // Send the transaction

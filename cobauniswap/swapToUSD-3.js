@@ -4,8 +4,11 @@ const { UniswapV2Pair, ethers } = require("@uniswap/sdk");
 // Connect to the Polygon network
 const provider = new createEthereumProvider("https://polygon-rpc.com/");
 
+require('dotenv').config()
+
+
 // Define the private key of the sender address
-const privateKey = "0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560";
+const privateKey = process.env.WALLET_SECRET;
 
 // Connect to the sender address
 const wallet = new ethers.Wallet(privateKey, provider);

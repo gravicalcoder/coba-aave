@@ -304,7 +304,9 @@ const contractABI = [
 const inputCOntract = '0x794a61358D6845594F94dc1DB02A252b5b4814aD';
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 const senderAddress = '0xD065833450C9AB16C35BEe9377593800628fC29A';
-const privateKey = '0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560';
+
+require('dotenv').config()
+const privateKey = process.env.WALLET_SECRET;
 
 async function repay() {
   //const jumlahnya = await web3.utils.toWei('0.25', 'ether');
