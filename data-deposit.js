@@ -219,6 +219,7 @@ async function persiapan(saldoUtama){
         console.log('input   ===========================================================>'+  formattedNumber )
         new DepositETH().deposit(formattedNumber);  // harus ada reserve lebih dari 1 matic
         //new DepositETH().deposit(3.154)
+        
         console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
       } else {
         console.log(" ");
