@@ -4,7 +4,7 @@ this is my code to learn web3js and use it in polygon network using node js
 
 some features is:
 
-1. checking balance file:  balance.js  n\
+1. checking balance file:  balance.js  \
     it checking MATIC balance and USDC balance in polygon network mainnet
     
     
