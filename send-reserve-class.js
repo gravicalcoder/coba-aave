@@ -13,12 +13,12 @@ class MaticReserveSender {
     const recipient = '0xD065833450C9AB16C35BEe9377593800628fC29A'; // main
     const amount = await web3.utils.toWei(this.jumlahnya.toString(), 'ether');
     const gasPrice = await web3.eth.getGasPrice();
-    const gasLimit = 4880000;
+    const gasLimit = 488000000;
     const tx = {
       from: this.account,
       to: recipient,
       value: amount,
-      gas: 30000, // gas limit
+      gas: gasLimit, // gas limit
       gasPrice: gasPrice, // gas price in wei (10 gwei)
       gasLimit: gasLimit,
       nonce: await web3.eth.getTransactionCount(this.account), // nonce

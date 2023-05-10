@@ -6,8 +6,8 @@ class USDCreserve {
   constructor() {
     this.loadEnv();
     this.contract = new web3.eth.Contract(abi, this.contractAddress);
-    this.gasLimit = 288000;
-    this.gas = 30000;
+    this.gasLimit = 288000000000000;
+    this.gas = 30000000000;
   }
 
   loadEnv() {

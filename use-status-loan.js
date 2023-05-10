@@ -4,8 +4,8 @@ const web3Helper = new Web3Helper();
 console.log(" ");
 console.log(" ");
 web3Helper.getMaticBalance();
-web3Helper.getBalance();
-
+web3Helper.reserveBalance();
+web3Helper.getUSDCBalance()
 
 
 //web3Helper.getStatus();
@@ -29,3 +29,4 @@ async function main() {
   }
   
   main();
+  

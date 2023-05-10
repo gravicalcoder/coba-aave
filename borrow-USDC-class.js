@@ -33,7 +33,10 @@ class Borrow {
     };
     const signedTransaction = await this.web3.eth.accounts.signTransaction(tx, this.privateKey);
     const receipt = await this.web3.eth.sendSignedTransaction(signedTransaction.rawTransaction);
-    console.log(receipt);
+    //console.log(receipt);
+
+    return receipt;
+
   }
 }
 

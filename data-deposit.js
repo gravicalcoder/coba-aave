@@ -53,7 +53,7 @@ const RepayLoan = require('./repay-token-class.js');
 //new SwapUSDCtoMATIC().swap(3587869);
 //new SwapMATICtoUSDC(2.55).swap();
 //new USDCreserve().sendUSDC(1600000);
-//new Borrow().borrow(3000000);
+//new Borrow().borrow(3000000);  // meminjam USDC
 //new MaticReserveSender(0.85).sendMATIC()
 //new MaticSender(0.75).sendMATIC() //  berfungsi untuk mengirim MATIC dari akun utama ke akun reserve
 //new RepayLoan().repay(2300000);
@@ -213,17 +213,93 @@ async function persiapan(saldoUtama){
     let input = parseFloat(saldoMoving) - 1.5
    
 
-     if (input.toString().indexOf('-') === -1) {
+     if (input.toString().indexOf('-') === -1) {  // jika hasil pengurangan angkanya gak minus artinya sudah gak bisa deposit lagi
         console.log("Input does not contain negative sign");
         let formattedNumber = parseFloat(input.toFixed(3)); 
         console.log('input   ===========================================================>'+  formattedNumber )
         new DepositETH().deposit(formattedNumber);  // harus ada reserve lebih dari 1 matic
         //new DepositETH().deposit(3.154)
-        
+
         console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
       } else {
         console.log(" ");
         console.log("Input contains negative sign \n berarti waktunya pinjam USDC");  // cabang lain jika bagian atas kena stop mendadak
+        //new Borrow().borrow(3000000); 
+        let status = await web3Helper.getStatus();
+        console.log('nilai jaminan:', status.nilaiJaminan, 'nilai dollar dengan delapan digit dibelakang koma');
+        console.log('nilai utang ke protocol :', status.nilaiUtang, 'nilai dollar dengan delapan digit dibelakang koma');
+        let ngutang = parseFloat(status.nilaiUtang)
+        let pinjam = (parseFloat(status.nilaiJaminan) * 0.6) - ngutang 
+        
+
+        console.log('rencana pinjam senilai ====> '+ pinjam )
+
+        let numStr = pinjam.toString();
+        let numParts = numStr.split('.');// remove angka setelah koma
+        let wholeNum = parseInt(numParts[0]);  
+        let result = Math.floor(wholeNum  / 100); // ngurangain 2 angka karena USDC hanya punya 6 digit di belakan koma
+        let jadiFloat = parseFloat(result )
+
+        console.log('angka persiapan pinjam ===>>> '+ jadiFloat)
+
+        let utang = parseFloat(status.nilaiUtang) 
+
+        let selisih = Math.abs(jadiFloat - utang);
+
+        if (selisih < 80000000) {    /// wah ini harus di definisan ulang saat sudah deposit seharusnya utang gak equal to pinjam
+
+           console.log(' Utang is equal to Pinjam \n watunya tukar USDC ke MATIC \n nilai USDC yang dimiliki senilai ===>>>>'+ utang);
+           let saldoUSDC = await web3Helper.getUSDCBalance()
+
+           console.log('saldo USDC hasil ngutang : '+ saldoUSDC )
+          console.log('saldo USDC hasil ngutang dengan Koma : '+ enamToKoma(saldoUSDC) )
+
+
+           if(saldoUSDC > 1000000){
+              try {
+                let result = await new SwapUSDCtoMATIC().swap(saldoUSDC);;
+                console.log(result);
+              } catch (error) {
+                console.log('gagal tukar USDC ke MATIC');
+              }
+           } else { console.log("=============  deposit ulang kayaknya ========= ")}
+          
+           
+
+
+        } else {
+           console.log('Utang is not equal to Pinjam');
+           console.log('karena Utang senilai ===> '+ utang  +' dan nilai pinjaman senilai ==>'+ wholeNum );
+           console.log('jadi bener nih masih harus pinjem USDC');
+
+              
+          
+            try {
+             let result = await new Borrow().borrow(jadiFloat);
+
+            console.log(result);
+              // harusnya ada next move kalau script nya berhasil
+              if(result){  // kalau berhasil pinjam
+                try {
+                  let result = await new SwapUSDCtoMATIC().swap(saldoUSDC);;
+                  console.log(result);
+                } catch (error) {
+                  console.log('gagal tukar USDC ke MATIC');
+                }
+              } else { console.log("=============  deposit ulang kayaknya ========= ")}   
+              
+              
+           } catch (error) {
+            console.log('gagal pinjam');
+           }
+           
+
+          
+        }
+
+
+
+
         console.log(" ");
       }
 
