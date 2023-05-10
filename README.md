@@ -50,11 +50,16 @@ some features is:
 to use all file above write file named: .env   
 contain:
 
+===================================================================
 WALLET_ADDRESS= "your 0x wallet adress"  \
 WALLET_SECRET= "your 0x secret key"
 
 WALLET_ADDRESS2= "your another 0x wallet adress for reserve"  \
 WALLET_SECRE2T= "your another 0x secret keyaddress for reserve"
+===================================================================
+
+
+
 
 replace all address contain: "0xD065833450C9AB16C35BEe9377593800628fC29A"  with your public wallet address because address "0xD065833450C9AB16C35BEe9377593800628fC29A"  is mine whe I training to use code
 
