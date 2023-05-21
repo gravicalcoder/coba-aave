@@ -1,3 +1,3 @@
 const MaticReserveSender = require('./send-reserve-class');
 
-new MaticReserveSender(9.1).sendMATIC()
+new MaticReserveSender(7.1).sendMATIC()

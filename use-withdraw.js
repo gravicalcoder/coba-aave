@@ -1,6 +1,6 @@
 const Withdrawal = require('./withdraw-class.js');
 
-new Withdrawal(8.018).withdraw();
+new Withdrawal(3.01).withdraw();
 var number = 7.9
 
 /*
