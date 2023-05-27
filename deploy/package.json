@@ -1,7 +1,6 @@
 {
   "name": "deploy",
   "version": "1.0.0",
-  "description": "",
   "main": "deploy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +11,12 @@
     "fs": "^0.0.1-security",
     "solc": "^0.4.25",
     "web3": "^1.9.0"
-  }
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomicfoundation/hardhat-verify": "^1.0.0",
+    "hardhat": "^2.14.0"
+  },
+  "keywords": [],
+  "description": ""
 }

@@ -8,13 +8,15 @@ const WALLET_ADDRESS = process.env.WALLET_ADDRESS
 const WALLET_SECRET = process.env.WALLET_SECRET
 
 
-const contractAddress ='0x8F8C6D79E51c3059c76053e21d227be948881D8A';
+//const contractAddress ='0x8F8C6D79E51c3059c76053e21d227be948881D8A';
+const contractAddress ='0x68D851606726406005B8125710e0524532D89895'; // yang bisa akses hanya yang nyimpen-2
 const privateKey =  WALLET_SECRET ;
 
 const web3 = new Web3('https://polygon-rpc.com/');
 
 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-
+// 250000000000    ==12
+// 25000000000 == 11 
 async function setUserData(name, age, phoneNumber, homeAddress, erc20Address) {
   try {
     const account = web3.eth.accounts.privateKeyToAccount(privateKey);
@@ -37,4 +39,4 @@ async function setUserData(name, age, phoneNumber, homeAddress, erc20Address) {
   }
 }
 
-setUserData('Jordan Peterson', 539, '+1234909090', '1723 old school bunker', '0xd5FEc352b7A0A4e4B5a7Ea797E63d12870EF401e');
+setUserData('Sujiwo Kepo', 104, '+1234904335', '1723 kalijogo', '0x3058aB42f14B412aB3326A3D21164cFcAd592D0b');
