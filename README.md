@@ -36,11 +36,15 @@ some features is:
     repalce " 16I3FNUGNN1CBPG6Y9X835JYJ3D78N4RAZ" wityh your API key in polygonscan
     
 14. sample contract containing simple database. file: deploy/database.sol  \
-      actually I deploy this in remix.ethereum.org   because my node js skill for deploying still fail XD
+      actually I deploy this in remix.ethereum.org   because  at this point my node js skill for deploying still fail XD
       
-15. sample code interaction to intercat with database.sol and add data     file: deploy/setData.js
+15. sample contract containing simple database. for multiple user  file: deploy/contracts/putter-getter.sol  \
+        this file I deploy using hardhat to deploy without using remix. to deploy try this terminal command: npx hardhat run scripts/deploy-putter-getter.js  --network polygon
+        
+  
+16. sample code interaction to intercat with database.sol and add data     file: deploy/setData.js
 
-16. sample code interaction to intercat with database.sol and call data     file: deploy/interact.js
+17. sample code interaction to intercat with database.sol and call data     file: deploy/interact.js
 
 
 
