@@ -1,8 +1,23 @@
 const ethers = require('ethers');
 
-const privateKey = '0xec726be660698d6d06fda1b8ad2229886881c5fcc5a36109213b3c63d1cf5560';
+require('dotenv').config()
 
+//const account = process.env.WALLET_ADDRESS;
+const privateKey = process.env.WALLET_SECRET;
 
+//checkBalance();
+
+var url = 'https://polygon-rpc.com/';
+const Web3 = require('web3');
+
+// Create a new instance of Web3
+const web3 = new Web3();
+
+const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+const publicKey = account.address;
+
+// Print the public key
+console.log('Public Key:', publicKey);
 //checkBalance();
 
 var url = 'https://polygon-rpc.com/';
